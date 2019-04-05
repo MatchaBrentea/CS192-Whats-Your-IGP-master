@@ -1,0 +1,66 @@
+<!-- MIT License
+
+Copyright (c) Justin James Gonzales, Thomas Martin Saliba, Brent Zaguirre
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+“This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2015-2016”.
+
+ -->
+ 
+{% extends "app/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <!DOCTYPE html>
+    <html>
+    <style>
+        body{
+            background-image:url({% static "app/loginback.jpg" %});
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .content-section{
+            background-color: rgba(0,0,0,0.4);
+            color: white;
+        }
+
+
+    </style>
+    <body>
+    
+    </body>
+    </html>
+    <br/><br/><br/><br/><br/><br/><br/>
+        <div class="content-section">
+            <form method="POST">
+                <h1 style="color: white">Organization Profile</h1>
+                <h1 style="color: #ffd40d">{{ name }}</h1>
+                <hr>
+                <p>Mobile: {{ mobile_number }}</p>
+                <p>Description: {{ description }}</p>
+                <p>Location: {{ location }}</p>
+
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'org-update' org.id %}" style="background-color:#ff9b0d;font-size:10px">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'org-delete' org.id %}" style="font-size:10px ">Delete</a>
+            </form>
+        </div>
+{% endblock content %}

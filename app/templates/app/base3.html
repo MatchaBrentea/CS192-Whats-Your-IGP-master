@@ -1,0 +1,176 @@
+<!-- MIT License
+
+Copyright (c) Justin James Gonzales, Thomas Martin Saliba, Brent Zaguirre
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+ 
+
+“This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2015-2016”.
+
+=================================================================================
+
+CODE HISTORY:
+<1/26/2019>
+1) Code initialization
+2) License
+3) Main Functionality (Backend):
+	a.	Navigation Bar 
+		> Home button (redirect to: Homepage)
+		> IGP button (redirect to: igps)
+		> Orgs button (redirect to: orgs)
+		> Search bar (redirect to: specific IGP)
+		> Login button (redirect)
+		> Register button (redirect)
+
+---------------------------------------------------------------------------------
+
+<2/02/2019>
+1) User Interface (Frontend):
+	a.	Navigation Bar
+		> Background color customization: #141d25
+		> Text color customization: White
+
+---------------------------------------------------------------------------------
+
+<2/08/2019>
+1)	Creation Date
+2)	Development Group
+3) 	Client Group
+4) 	Purpose
+5)	Methods
+
+=================================================================================		
+
+Creation Date: <1/26/2019>
+
+=================================================================================
+
+Development Group: What's Your IGP
+
+=================================================================================
+
+Client Group: What's Your IGP
+
+=================================================================================
+
+Purpose:
+> The purpose of the project: "What's Your IGP," is for the fufillment of the course: "CS 192." The project
+aims to centralize the Income Generated Projects (IGP's) online information of all existing organizations
+associated with UP Diliman. It's objective is to offer convenience for both sellers and customers of IGP
+to sell and gather information online.  
+
+=================================================================================
+ -->
+ 
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<!--.navbar custom 
+		2/02/2019
+		navbar style customization-->
+	<style>
+	.navbar-custom{
+		background-color: #141d25;
+		background-image: none;
+		background-repeat: no-repeat;
+	}
+	</style>
+	<!--meta tags
+		1/26/2019 
+		Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!--Bootstrap CSS 
+		1/26/2019
+		Required Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+	<link rel="stylesheet" type="text/css" href="{% static 'app/main.css' %}">
+
+	<link rel="shortcut icon" type="image/x-icon" href="{%static 'app/icon.jpg' %}" />
+
+ 	{% if page %}
+ 		<title>What's Your IGP? - {{ page }} </title>
+	{% else %}
+		<title>What's Your IGP?</title>
+	{% endif %}
+</head>
+
+<!--Navbar Main
+	1/26/2019
+	Navigation Bar in website-->
+<header class="site-header">
+	<!--Navbar Left
+		1/26/2019
+		Navigation Bar in website (left)-->
+	<nav class="navbar navbar-expand-md navbar-custom fixed-top">
+		<div class="container">
+			<h3 style = "color:white; font-size:30px">WHAT'S YOUR IGP?</h3>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			
+
+	        <!--Navbar Right
+	        	1/26/2019
+	        	Navigation Bar in website (right)-->
+				<div class="navbar-nav">
+						<a class="nav-item nav-link" href="{% url 'app-home' %}" style = "color:#ffffff"><i class="fa fa-fw fa-home"></i>Home</a>
+
+						<a class="nav-item nav-link" href="{% url 'list_igp' %}" style = "color:#ffffff"><i class="fa fa-fw fa-shopping-cart"></i>IGPs</a>
+						<a class="nav-item nav-link" href="{% url 'list_org' %}" style = "color:#ffffff"><i class="fa fa-fw fa-heart"></i>Orgs</a>
+			
+				{% if user.is_authenticated %}
+						<a class="nav-item nav-link" href="{%  url 'buyer_profile' %}" style = "color:#ffffff"><i class="fa fa-fw fa-user"></i>Profile</a>
+						<a class="nav-item nav-link" href="{% url 'logout' %}" style = "color:#ffffff">Logout</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<body>
+	<!--Alert message
+		1/26/2019
+		Alert message tags-->
+	<main role="main" class="container">
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-{{ message.tags }}">
+					{{ message }}	
+				</div>
+			{% endfor %}
+		{% endif %}
+
+		{% block content %}{% endblock %}
+	</main>
+	<!--Scripts
+		1/26/2019
+		Required scripts-->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

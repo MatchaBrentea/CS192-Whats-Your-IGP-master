@@ -1,0 +1,108 @@
+<!-- MIT License
+
+Copyright (c) Justin James Gonzales, Thomas Martin Saliba, Brent Zaguirre
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+“This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2015-2016”.
+
+=================================================================================
+
+CODE HISTORY:
+<1/26/2019>
+1) Code initialization
+2) License
+3) Main Functionality (Backend):
+  a.  "About us" section
+
+--------------------------------------------------------------------------------
+
+<2/08/2019>
+1)  Creation Date
+2)  Development Group
+3)  Client Group
+4)  Purpose
+5)  Methods
+6)	User Interface (Frontend):
+	a.	Background
+		>	Background (plain backgroud to customized background)
+	b.	IGP form (update)
+
+=================================================================================   
+
+Creation Date: <1/26/2019>
+ 
+=================================================================================
+
+Development Group: What's Your IGP
+
+=================================================================================
+
+Client Group: What's Your IGP
+
+=================================================================================
+
+Purpose:
+> The purpose of the project: "What's Your IGP," is for the fufillment of the course: "CS 192." The project
+aims to centralize the Income Generated Projects (IGP's) online information of all existing organizations
+associated with UP Diliman. It's objective is to offer convenience for both sellers and customers of IGP
+to sell and gather information online.  
+
+=================================================================================
+
+ -->
+ 
+
+{% extends "app/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+	<!DOCTYPE html>
+	<html>
+	<style>
+	body{
+		background-color:#f69a17;
+	}
+
+	.content-section{
+		color:white;
+		background-color: rgba(0,0,0,0.4);
+	}
+	</style>
+	<body>
+	</body>
+	<div class ="content-section">
+		<form method="POST">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">
+					New ORG
+				</legend>
+				{{ form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-outline-info" type="submit">
+					Add
+				</button>
+			</div>
+		</form>
+	</div>
+	</html>
+{% endblock content %}

@@ -1,0 +1,101 @@
+<!-- MIT License
+
+Copyright (c) Justin James Gonzales, Thomas Martin Saliba, Brent Zaguirre
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+asd
+“This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2015-2016”.
+
+=================================================================================
+
+CODE HISTORY:
+<1/26/2019>
+1) Code initialization
+2) License
+3) Main Functionality (Backend):
+  a.  "About us" section
+
+--------------------------------------------------------------------------------
+
+ -->
+ 
+
+{% extends "app/base2.html" %}
+{% load static %}
+{% block content %}
+
+	<!DOCTYPE html>
+	<html>
+	<style>
+		body{
+            background-image:url({% static "app/loginback.jpg" %});
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .content-section{
+            background-color: rgba(0,0,0,0.4);
+            color: white;
+        }
+
+
+        .article-title{
+        	color: white;
+        	background-image: asd
+        }
+	</style>
+	<body>
+	
+	</body>
+	</html>
+	<br/><br/><br/>
+	<article class="media content-section">
+		<div class="media-body">
+			<div class="article-metadata">
+				<h1 class="mr-2" style="font-size:50px; color: #ffd40d">{{ org.name }}</h1>
+			</div>
+			<p class="article-title">{{org.desc}}</p>
+			<p class="article-title">{{org.location}}</p>
+			<p class="article-title">{{org.mobile_number}}</p>
+		</div>
+	</article>
+
+
+	<div class="article-metadata">
+			<div class="article-metadata">
+				<h2 class="mr-2" href="#" style = "color: white">List of IGPs</h2>
+			</div>
+	</div>
+
+	<div>
+		{% for i in igp %}
+			<article class="media content-section">
+				<div class="media-body">
+					
+					<a class="mr-2" href="{% url 'igpdetail' i.id %}" style="color:#ffd40d;font-size:20px">{{ i.item }}</a>
+					<p class="article-content">{{ i.price }} PHP</p>
+					<p class="article-content" ><i>{{ i.itype }}</i></p>
+					<small class="text-muted">{{ i.date_posted|date }}</small>
+				</div>
+			</article>
+		{% endfor %}
+	</div>
+
+{% endblock content %}
